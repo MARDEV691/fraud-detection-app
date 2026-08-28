@@ -24,7 +24,7 @@ During model development in Google Colab, multiple classification algorithms wer
 
 
  Live Demo
-* **Interactive Web Application:** [Live Streamlit App](https://share.streamlit.io) *(Paste your live Streamlit URL here)*
+* **Interactive Web Application:** (https://fraud-detection-app-g5yqmupy8osae8sspz4nkx.streamlit.app/)
 * **GitHub Repository:** [MARDEV691/fraud-detection-app](https://github.com/MARDEV691/fraud-detection-app)
 
 ---
