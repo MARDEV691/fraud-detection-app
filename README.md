@@ -1,1 +1,53 @@
 # fraud-detection-app
+#Real-Time E-Commerce Fraud Detection Engine
+
+An end-to-end Machine Learning web application designed to evaluate and flag fraudulent transactions in real time. Built with an optimized **XGBoost Classifier**, scikit-learn preprocessing pipelines, and deployed interactively using **Streamlit Community Cloud**.
+
+---
+
+ Live Demo
+* **Interactive Web Application:** [Live Streamlit App](https://share.streamlit.io) *(Paste your live Streamlit URL here)*
+* **GitHub Repository:** [MARDEV691/fraud-detection-app](https://github.com/MARDEV691/fraud-detection-app)
+
+---
+
+ Project Overview
+E-commerce fraud prevention presents a severe class-imbalance challenge: legitimate transactions heavily outnumber fraudulent ones. 
+
+A naive baseline model predicting all transactions as legitimate can achieve high overall accuracy while failing to capture actual fraud. This project addresses that trade-off by engineering behavior-driven risk signals, tuning classification thresholds, and deploying an operational machine learning pipeline that catches fraud while minimizing checkout friction for legitimate shoppers.
+
+---
+
+Key Performance Metrics
+
+| Evaluation Metric | Score | Business Impact |
+| :--- | :--- | :--- |
+| **ROC-AUC** | **0.8072** | High discriminatory power across varied decision thresholds |
+| **Overall Accuracy** | **83.14%** | Reliable baseline performance across both classes |
+| **Fraud Recall (Class 1)** | **62.70%** | Successfully catches nearly two-thirds of fraudulent transactions |
+| **PR-AUC** | **0.3534** | Evaluates performance under severe positive class sparsity |
+| **Optimal F1 Threshold** | **0.7885** | Optimized threshold minimizing customer checkout friction |
+
+---
+
+Feature Engineering & Risk Signals
+The model evaluates transactional and behavioral risk features:
+* **`Amount_to_AccountAge_Ratio`**: Detects velocity spikes where newly created accounts make large purchases.
+* **`Is_Late_Night`**: Flags higher-risk purchase timing (10:00 PM – 5:59 AM).
+* **`Address_Mismatch`**: Identifies discrepancy between shipping and billing addresses.
+* **`Unit_Price`**: Normalized transaction cost per item quantity.
+* **`Device_Frequency`**: Device risk categorization across desktop, mobile, and tablet channels.
+
+---
+
+ Repository Structure
+
+```text
+fraud-detection-app/
+├── app.py                      # Interactive Streamlit application interface
+├── requirements.txt            # Project dependencies for cloud deployment
+├── xgboost_fraud_model.json    # Serialized XGBoost model weights
+├── model_config.json           # Model configuration & optimal decision threshold
+├── model_features.json         # Exact feature schema expected by the model
+├── scaler_params.json          # Fitted standardization parameters (means & scales)
+└── README.md                   # Project documentation & summary
