@@ -2,8 +2,26 @@
 #Real-Time E-Commerce Fraud Detection Engine
 
 An end-to-end Machine Learning web application designed to evaluate and flag fraudulent transactions in real time. Built with an optimized **XGBoost Classifier**, scikit-learn preprocessing pipelines, and deployed interactively using **Streamlit Community Cloud**.
+---
+
+
+## 🔬 Model Experimentation & Comparison
+
+During model development in Google Colab, multiple classification algorithms were trained, tuned, and evaluated under severe class imbalance conditions to identify the best architecture for production:
+
+| Model | Accuracy | Fraud Recall (Class 1) | ROC-AUC | Outcome / Trade-off |
+| :--- | :--- | :--- | :--- | :--- |
+| **Random Forest** | ~95.0% | < 10.0% | ~0.72 | Suffered from the "majority class trap"—high accuracy by almost entirely missing fraud cases. |
+| **Logistic Regression** | ~75.4% | ~66.4% | ~0.78 | Captured fraud effectively, but generated high false-positive rates (flagged over 1,100 legitimate transactions). |
+| **XGBoost (Tuned)** | **83.14%** | **62.70%** | **0.8072** | **Best Overall:** Achieved the highest ROC-AUC and PR-AUC, catching 62.7% of fraud while cutting false alarms by ~395 cases. |
+
+### Why XGBoost Was Selected:
+1. **Handling Complex Feature Interactions:** XGBoost effectively captured non-linear risk signals (e.g., high-dollar transactions on accounts under 30 days old combined with late-night hours).
+2. **Optimal Business Balance:** It provided the strongest harmonic trade-off between loss prevention (high fraud recall) and customer experience (low false-positive friction).
+3. **Optimized Decision Threshold:** By operating at a tuned threshold ($0.7885$), the pipeline maximizes the positive class F1-score specifically for production deployment.
 
 ---
+
 
  Live Demo
 * **Interactive Web Application:** [Live Streamlit App](https://share.streamlit.io) *(Paste your live Streamlit URL here)*
